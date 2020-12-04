@@ -9,8 +9,12 @@ class App extends Component {
 		this.state = {
 			countries: [],
 			questions: [],
+			currentAnswer: "",
+			score: 0,
+			answered: false,
 		};
 		this.createQuestions = this.createQuestions.bind(this);
+		this.answerQuestion = this.answerQuestion.bind(this);
 	}
 
 	async componentDidMount() {
@@ -51,7 +55,16 @@ class App extends Component {
 		};
 		this.setState({
 			questions: this.state.questions.concat(question),
+			currentAnswer: country,
 		});
+	}
+
+	answerQuestion(e) {
+		if (e.target.value === this.state.currentAnswer) {
+			e.target.id = "correct";
+		} else {
+			console.log("False!");
+		}
 	}
 
 	render() {
@@ -64,13 +77,33 @@ class App extends Component {
 				</div>
 				<div className="question-container">
 					{questions.length > 0 &&
-						questions.map((question) => (
-							<div className="question-section">
+						questions.map((question, index) => (
+							<div key={index} className="question-section">
 								<h4>{question.question}</h4>
-								<button>A: {question.answers[0]}</button>
-								<button>B: {question.answers[1]}</button>
-								<button>C: {question.answers[2]}</button>
-								<button>D: {question.answers[3]}</button>
+								<button
+									onClick={this.answerQuestion}
+									value={question.answers[0]}
+								>
+									{question.answers[0]}
+								</button>
+								<button
+									onClick={this.answerQuestion}
+									value={question.answers[1]}
+								>
+									{question.answers[1]}
+								</button>
+								<button
+									onClick={this.answerQuestion}
+									value={question.answers[2]}
+								>
+									{question.answers[2]}
+								</button>
+								<button
+									onClick={this.answerQuestion}
+									value={question.answers[3]}
+								>
+									{question.answers[3]}
+								</button>
 							</div>
 						))}
 				</div>

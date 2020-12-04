@@ -31,7 +31,7 @@
 
 .question-container button {
 	background: #ffffff;
-	border: 2px solid rgba(96, 102, 208, 0.7);
+	border: 1px solid rgba(96, 102, 208, 0.7);
 	box-sizing: border-box;
 	border-radius: 10px;
 	width: 75%;
@@ -43,16 +43,22 @@
 	cursor: pointer;
 }
 
+#correct {
+	background-color: #60bf88;
+	color: #ffffff;
+}
+
 .question-container button:hover {
 	background: #f9a826;
 	color: #ffffff;
-	border: 2px solid #ffffff;
+	border: 1px solid #ffffff;
 }
 
 .question-container h4 {
 	margin: 0.3em;
 	font-weight: bolder;
 	font-size: 1.2em;
+	margin-bottom: 1em;
 }
 
 .question-title {

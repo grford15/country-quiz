@@ -63,7 +63,7 @@ class App extends Component {
 		if (e.target.value === this.state.currentAnswer) {
 			e.target.id = "correct";
 		} else {
-			console.log("False!");
+			e.target.id = "incorrect";
 		}
 	}
 

@@ -48,6 +48,11 @@
 	color: #ffffff;
 }
 
+#incorrect {
+	background-color: #ea8282;
+	color: #ffffff;
+}
+
 .question-container button:hover {
 	background: #f9a826;
 	color: #ffffff;

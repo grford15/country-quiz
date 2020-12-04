@@ -22,7 +22,7 @@ class App extends Component {
 			)
 			.catch((err) => console.error(err));
 
-		await this.createQuestions();
+		this.createQuestions();
 	}
 
 	createQuestions() {
@@ -30,14 +30,24 @@ class App extends Component {
 		const random = Math.floor(Math.random() * arrayLength);
 		const country = this.state.countries[random].name;
 		const capital = this.state.countries[random].capital;
+		const answersArray = [
+			country,
+			this.state.countries[Math.floor(Math.random() * arrayLength)].name,
+			this.state.countries[Math.floor(Math.random() * arrayLength)].name,
+			this.state.countries[Math.floor(Math.random() * arrayLength)].name,
+		];
+		const shuffleArray = (array) => {
+			for (let i = array.length - 1; i > 0; i--) {
+				let j = Math.floor(Math.random() * (i + 1));
+				let temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+			}
+			return array;
+		};
 		const question = {
 			question: `${capital} is the capital of what country?`,
-			answers: [
-				country,
-				this.state.countries[Math.floor(Math.random() * arrayLength)].name,
-				this.state.countries[Math.floor(Math.random() * arrayLength)].name,
-				this.state.countries[Math.floor(Math.random() * arrayLength)].name,
-			],
+			answers: shuffleArray(answersArray),
 		};
 		this.setState({
 			questions: this.state.questions.concat(question),
@@ -45,6 +55,7 @@ class App extends Component {
 	}
 
 	render() {
+		const { questions } = this.state;
 		return (
 			<div className="app-container">
 				<div className="question-title">
@@ -52,11 +63,16 @@ class App extends Component {
 					<img src={QuestionSVG} alt="adventure svg" />
 				</div>
 				<div className="question-container">
-					<h4>Question</h4>
-					<button>Answer A</button>
-					<button>Answer B</button>
-					<button>Answer C</button>
-					<button>Answer D</button>
+					{questions.length > 0 &&
+						questions.map((question) => (
+							<div className="question-section">
+								<h4>{question.question}</h4>
+								<button>A: {question.answers[0]}</button>
+								<button>B: {question.answers[1]}</button>
+								<button>C: {question.answers[2]}</button>
+								<button>D: {question.answers[3]}</button>
+							</div>
+						))}
 				</div>
 			</div>
 		);

@@ -49,6 +49,12 @@
 	border: 2px solid #ffffff;
 }
 
+.question-container h4 {
+	margin: 0.3em;
+	font-weight: bolder;
+	font-size: 1.2em;
+}
+
 .question-title {
 	display: flex;
 	align-items: baseline;

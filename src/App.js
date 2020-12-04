@@ -1,11 +1,25 @@
 import React, { Component } from "react";
 import QuestionSVG from "./undraw_adventure_4hum 1.svg";
+import axios from "axios";
 import "./App.css";
 
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			countries: [],
+			questions: [],
+		};
+	}
+
+	componentDidMount() {
+		axios("https://restcountries.eu/rest/v2/all")
+			.then((res) =>
+				this.setState({
+					countries: res.data,
+				})
+			)
+			.catch((err) => console.error(err));
 	}
 
 	render() {
